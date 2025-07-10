@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+{% block content %}
+<h2>Dashboard</h2>
+<a href="{{ url_for('main.clients_list') }}">Manage Clients</a>
+<ul>
+{% for client in clients %}
+    <li>{{ client.name }} - {{ client.status or 'unknown' }}</li>
+{% endfor %}
+</ul>
+{% endblock %}

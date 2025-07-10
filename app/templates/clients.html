@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+{% block content %}
+<h2>Clients</h2>
+<form method="get">
+    <input type="text" name="q" value="{{ q }}" placeholder="Filter">
+    <input type="submit" value="Search">
+</form>
+<ul>
+{% for client in clients %}
+    <li><a href="{{ url_for('main.client_detail', client_id=client.id) }}">{{ client.name }}</a></li>
+{% endfor %}
+</ul>
+{% endblock %}
