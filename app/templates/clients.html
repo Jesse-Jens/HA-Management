@@ -1,13 +1,17 @@
 {% extends 'base.html' %}
 {% block content %}
 <h2>Clients</h2>
-<form method="get">
-    <input type="text" name="q" value="{{ q }}" placeholder="Filter">
-    <input type="submit" value="Search">
+<form method="get" class="row g-2 mb-3" style="max-width:400px;">
+  <div class="col-auto flex-grow-1">
+    <input class="form-control" type="text" name="q" value="{{ q }}" placeholder="Filter">
+  </div>
+  <div class="col-auto">
+    <button class="btn btn-primary" type="submit">Search</button>
+  </div>
 </form>
-<ul>
+<ul class="list-group">
 {% for client in clients %}
-    <li><a href="{{ url_for('main.client_detail', client_id=client.id) }}">{{ client.name }}</a></li>
+  <li class="list-group-item"><a href="{{ url_for('main.client_detail', client_id=client.id) }}">{{ client.name }}</a></li>
 {% endfor %}
 </ul>
 {% endblock %}

@@ -1,4 +1,4 @@
-from flask import Flask
+from flask import Flask, redirect, url_for, request
 from flask_sqlalchemy import SQLAlchemy
 from flask_login import LoginManager
 from .config import Config
@@ -14,6 +14,10 @@ def create_app():
     db.init_app(app)
     login_manager.init_app(app)
     login_manager.login_view = 'main.login'
+
+    @login_manager.unauthorized_handler
+    def unauthorized():
+        return redirect(url_for('main.login', next=request.path))
 
     from .views import main_bp
     app.register_blueprint(main_bp)
