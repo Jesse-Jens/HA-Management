@@ -4,7 +4,7 @@ A simple web based portal for managing multiple HomeAssistant systems. The appli
 
 ## Quick start
 
-Run the installer script on a fresh Ubuntu system to set up all dependencies, create a Python virtual environment and initialize the database. Add the `cleaninstall` argument to reinstall everything and reset the database:
+Run the installer script on a fresh Ubuntu system to set up all dependencies, create a Python virtual environment and initialize the database. The script waits for any active apt or dpkg operations so you never need to remove lock files. Add the `cleaninstall` argument to reinstall everything and reset the database:
 
 ```bash
 ./install.sh [cleaninstall]
