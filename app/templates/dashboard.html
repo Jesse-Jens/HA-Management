@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="d-flex justify-content-between align-items-center mb-3">
+  <h2>Dashboard</h2>
+  <div>
+    <a class="btn btn-secondary me-2" href="{{ url_for('main.clients_list') }}">Manage Clients</a>
+    <a class="btn btn-secondary" href="{{ url_for('main.organizations') }}">Organizations</a>
+  </div>
+</div>
+<div class="card mb-4">
+  <div class="card-body">
+    <canvas id="statusChart" height="150"></canvas>
+  </div>
+</div>
+<h5>Clients</h5>
+<ul class="list-group">
+  {% for client in clients %}
+  <li class="list-group-item d-flex justify-content-between align-items-center">
+    <span>{{ client.name }}</span>
+    <span class="badge bg-secondary">{{ client.status or 'unknown' }}</span>
+  </li>
+  {% endfor %}
+</ul>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+  const ctx = document.getElementById('statusChart').getContext('2d');
+  const data = {
+    labels: ['Healthy','Attention','Critical','Offline'],
+    datasets: [{
+      data: [{{ counts.healthy }}, {{ counts.attention }}, {{ counts.critical }}, {{ counts.offline }}],
+      backgroundColor: ['#28a745','#ffc107','#dc3545','#6c757d']
+    }]
+  };
+  new Chart(ctx, {type: 'doughnut', data: data});
+</script>
+{% endblock %}
