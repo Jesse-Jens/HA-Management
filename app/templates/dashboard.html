@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+{% block content %}
+<h2>Dashboard</h2>
+<a class="btn btn-secondary mb-3" href="{{ url_for('main.clients_list') }}">Manage Clients</a>
+<ul class="list-group">
+{% for client in clients %}
+    <li class="list-group-item">{{ client.name }} - {{ client.status or 'unknown' }}</li>
+{% endfor %}
+</ul>
+{% endblock %}
