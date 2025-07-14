@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% block content %}
+<h2>Organizations</h2>
+<form method="post" class="mb-3" style="max-width:400px;">
+  <div class="input-group">
+    <input name="name" class="form-control" placeholder="New organization" required>
+    <button class="btn btn-primary" type="submit">Add</button>
+  </div>
+</form>
+<ul class="list-group">
+  {% for org in orgs %}
+  <li class="list-group-item d-flex justify-content-between align-items-center">
+    <span>{{ org.name }}</span>
+    <span>
+      <a href="{{ url_for('main.org_edit', org_id=org.id) }}" class="btn btn-sm btn-secondary">Edit</a>
+      <a href="{{ url_for('main.org_delete', org_id=org.id) }}" class="btn btn-sm btn-danger">Delete</a>
+      <a href="{{ url_for('main.download_plugin', org_id=org.id) }}" class="btn btn-sm btn-info">Download Plugin</a>
+    </span>
+  </li>
+  {% endfor %}
+</ul>
+{% endblock %}
