@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% block content %}
+<h2>Update Credentials</h2>
+<form method="post" style="max-width:400px;">
+  <div class="mb-3">
+    <label class="form-label">Username</label>
+    <input class="form-control" type="text" name="username" value="{{ current_user.username }}" required>
+  </div>
+  <div class="mb-3">
+    <label class="form-label">New Password</label>
+    <input class="form-control" type="password" name="password" placeholder="Leave blank to keep current">
+  </div>
+  <button class="btn btn-primary" type="submit">Save</button>
+</form>
+{% endblock %}
