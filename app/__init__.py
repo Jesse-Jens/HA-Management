@@ -19,6 +19,10 @@ def create_app():
     def unauthorized():
         return redirect(url_for('main.login', next=request.path))
 
+    @app.errorhandler(401)
+    def handle_401(e):
+        return redirect(url_for('main.login', next=request.path))
+
     from .views import main_bp
     app.register_blueprint(main_bp)
 
