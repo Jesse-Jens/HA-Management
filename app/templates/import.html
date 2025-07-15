@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+{% block content %}
+<h2>Import Database</h2>
+<form method="post" enctype="multipart/form-data" style="max-width:400px;">
+  <div class="mb-3">
+    <input class="form-control" type="file" name="db" required>
+  </div>
+  <button class="btn btn-primary" type="submit">Upload</button>
+</form>
+{% endblock %}
