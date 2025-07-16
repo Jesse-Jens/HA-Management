@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="d-flex justify-content-between align-items-center mb-3">
+  <h2>Clients</h2>
+  <form method="get" class="d-flex" style="max-width:500px;">
+    <input class="form-control me-2" type="text" name="q" value="{{ q }}" placeholder="Filter">
+    <select class="form-select me-2" name="org">
+      <option value="">All orgs</option>
+      {% for org in orgs %}
+      <option value="{{ org.id }}" {% if org_id and org.id == org_id|int %}selected{% endif %}>{{ org.name }}</option>
+      {% endfor %}
+    </select>
+    <button class="btn btn-primary" type="submit">Search</button>
+  </form>
+  </form>
+  <a class="btn btn-primary ms-2" href="{{ url_for('main.client_add') }}">Add Client</a>
+  <a class="btn btn-secondary ms-2" href="{{ url_for('main.export_clients') }}">Export</a>
+</div>
+<div class="row">
+{% for client in clients %}
+  <div class="col-md-4 mb-3">
+    <div class="card h-100">
+      <div class="card-body">
+        <h5 class="card-title">{{ client.name }}</h5>
+        <p class="card-text">Status: {{ client.status or 'unknown' }}</p>
+        <p class="card-text">CPU: {{ client.cpu or 'n/a' }}% Mem: {{ client.memory or 'n/a' }}%</p>
+        <a class="btn btn-sm btn-secondary" href="{{ url_for('main.client_detail', client_id=client.id) }}">Manage</a>
+        <a class="btn btn-sm btn-info" href="{{ url_for('main.download_plugin', client_id=client.id) }}">Plugin</a>
+        <a class="btn btn-sm btn-secondary" href="{{ url_for('main.client_edit', client_id=client.id) }}">Edit</a>
+        <a class="btn btn-sm btn-danger" href="{{ url_for('main.client_delete', client_id=client.id) }}">Delete</a>
+      </div>
+    </div>
+  </div>
+{% endfor %}
+</div>
+{% endblock %}
