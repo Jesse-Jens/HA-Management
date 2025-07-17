@@ -1,0 +1,7 @@
+Flask==2.3.2
+SQLAlchemy==2.0.10
+Werkzeug==2.3.6
+Flask-Login==0.6.2
+Flask-SQLAlchemy==3.0.3
+requests==2.32.1
+psutil==5.9.8
