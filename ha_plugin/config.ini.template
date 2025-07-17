@@ -1,0 +1,6 @@
+[portal]
+server = http://homeassistant.jayjaysrv.com
+org_id =
+client_id =
+api_key =
+interval = 600
