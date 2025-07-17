@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% block content %}
+<h2>Cloudflare Tunnel</h2>
+<form method="post" style="max-width:400px;">
+  <div class="mb-3">
+    <label class="form-label">Hostname</label>
+    <input class="form-control" name="hostname" value="{{ hostname }}">
+  </div>
+  <div class="mb-3">
+    <label class="form-label">Local Port</label>
+    <input class="form-control" name="port" value="{{ port }}">
+  </div>
+  <button class="btn btn-primary" type="submit">Save</button>
+</form>
+<p class="mt-3">Run <code>./start_tunnel.sh</code> to start the tunnel using this configuration.</p>
+{% endblock %}

@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+{% block content %}
+<h2>WireGuard</h2>
+<h5>Server</h5>
+<table class="table table-sm mb-4">
+  <tr><th>Address</th><td>{{ interface['Address'] }}</td></tr>
+  <tr><th>ListenPort</th><td>{{ interface['ListenPort'] }}</td></tr>
+</table>
+<h5>Peers</h5>
+<table class="table">
+  <thead><tr><th>Organization</th><th>Client</th><th>Public Key</th><th>Allowed IPs</th><th></th></tr></thead>
+  <tbody>
+  {% for peer in peers %}
+  <tr>
+    <td>{{ peer.get('org','') }}</td>
+    <td>{{ peer.get('client','') }}</td>
+    <td style="word-break:break-all;">{{ peer['PublicKey'] }}</td>
+    <td>{{ peer['AllowedIPs'] }}</td>
+    <td>
+      <form method="post" style="display:inline;">
+        <input type="hidden" name="remove" value="{{ peer['PublicKey'] }}">
+        <button class="btn btn-sm btn-danger" type="submit">Remove</button>
+      </form>
+    </td>
+  </tr>
+  {% endfor %}
+  </tbody>
+</table>
+{% endblock %}

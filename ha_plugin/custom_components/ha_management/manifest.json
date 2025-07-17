@@ -1,0 +1,8 @@
+{
+  "domain": "ha_management",
+  "name": "HA Management",
+  "documentation": "https://example.com",
+  "version": "0.1",
+  "requirements": ["requests"],
+  "codeowners": []
+}
