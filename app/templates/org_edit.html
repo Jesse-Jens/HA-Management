@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+{% block content %}
+<h2>Edit Organization</h2>
+<form method="post" style="max-width:400px;">
+  <div class="mb-3">
+    <input name="name" class="form-control" value="{{ org.name }}" required>
+  </div>
+  <button class="btn btn-primary" type="submit">Save</button>
+</form>
+{% endblock %}

@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+{% block content %}
+<h2>Cloudflare Tunnels</h2>
+{% for label, cfg in config.items() %}
+<h4 class="mt-4">{{ label|capitalize }} tunnel</h4>
+<form method="post" style="max-width:400px;">
+  <input type="hidden" name="label" value="{{ label }}">
+  <div class="mb-3">
+    <label class="form-label">Hostname</label>
+    <input class="form-control" name="hostname" value="{{ cfg.hostname }}">
+  </div>
+  <div class="mb-3">
+    <label class="form-label">Local Port</label>
+    <input class="form-control" name="port" value="{{ cfg.port }}">
+  </div>
+  <div class="mb-3">
+    <label class="form-label">Token (optional)</label>
+    <input class="form-control" name="token" value="{{ cfg.token }}">
+  </div>
+  <button class="btn btn-primary" type="submit">Save</button>
+</form>
+<div class="mt-2 mb-4">
+  <form method="post" class="d-inline">
+    <input type="hidden" name="label" value="{{ label }}">
+    <input type="hidden" name="start" value="1">
+    <button class="btn btn-success" {% if cfg.running %}disabled{% endif %}>Start</button>
+  </form>
+  <form method="post" class="d-inline ms-2">
+    <input type="hidden" name="label" value="{{ label }}">
+    <input type="hidden" name="stop" value="1">
+    <button class="btn btn-danger" {% if not cfg.running %}disabled{% endif %}>Stop</button>
+  </form>
+</div>
+{% endfor %}
+{% endblock %}
