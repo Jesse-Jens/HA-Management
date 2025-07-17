@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% block content %}
+<h2>{{ client.name }}</h2>
+<p>Status: {{ client.status or 'unknown' }}</p>
+<p>CPU: {{ client.cpu or 'n/a' }}% Mem: {{ client.memory or 'n/a' }}%</p>
+<div class="mb-3">
+  <a class="btn btn-info" href="{{ url_for('main.download_plugin', client_id=client.id) }}">Download Plugin</a>
+  <a class="btn btn-secondary" href="{{ url_for('main.client_action', client_id=client.id, cmd='update') }}">Update Plugin</a>
+  <a class="btn btn-danger" href="{{ url_for('main.client_action', client_id=client.id, cmd='reboot') }}">Reboot</a>
+  <a class="btn btn-secondary" href="{{ url_for('main.client_action', client_id=client.id, cmd='shutdown') }}">Shutdown</a>
+   {% if client.ip_address %}
+   <a class="btn btn-primary" href="http://{{ client.ip_address.split('/')[0] }}:8123" target="_blank">Open HA</a>
+   {% endif %}
+</div>
+<form method="post" class="mb-3">
+  <div class="mb-3">
+    <label class="form-label">Remote Shell</label>
+    <textarea class="form-control" name="cmd" rows="3" placeholder="Enter command"></textarea>
+  </div>
+  <button class="btn btn-primary" type="submit">Run Command</button>
+</form>
+{% if output %}
+<pre class="bg-dark text-light p-2">{{ output }}</pre>
+{% endif %}
+{% endblock %}
