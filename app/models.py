@@ -6,6 +6,7 @@ class Client(db.Model):
     name = db.Column(db.String(100), nullable=False)
     location = db.Column(db.String(100))
     status = db.Column(db.String(50))
+    ha_token = db.Column(db.String(200))
 
 class User(UserMixin, db.Model):
     id = db.Column(db.Integer, primary_key=True)

@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+{% block content %}
+<h2>Manage {{ client.name }}</h2>
+<form method="post" action="{{ url_for('main.client_action', client_id=client.id) }}">
+    <label>API path <input type="text" name="path" placeholder="services/..."/></label><br>
+    <label>JSON payload<br><textarea name="payload" rows="4" cols="50"></textarea></label><br>
+    <input type="submit" value="Send">
+</form>
+{% if output %}
+<pre>{{ output }}</pre>
+{% endif %}
+{% endblock %}

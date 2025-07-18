@@ -24,3 +24,17 @@ python run.py
 
 The default admin account uses the credentials `admin` / `admin`. Change the
 password after logging in.
+
+## Home Assistant token
+
+Each client entry stores a Home Assistant long lived access token. Create this
+token from your Home Assistant user profile and paste it into the **HA Token**
+field when editing a client. It will be used for API requests sent to
+`http://<client IP>:8123/api/...`.
+
+## WireGuard connectivity
+
+The optional download link for each client now only provides a basic WireGuard
+configuration file. Use this file on the client device to establish a VPN
+connection to the management server. No custom Home Assistant component is
+required anymore.

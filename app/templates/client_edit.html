@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+{% block content %}
+<h2>Edit Client</h2>
+<form method="post">
+    <label>Name <input type="text" name="name" value="{{ client.name }}"></label><br>
+    <label>Location <input type="text" name="location" value="{{ client.location }}"></label><br>
+    <label>Status <input type="text" name="status" value="{{ client.status }}"></label><br>
+    <label>HA Token <input type="text" name="ha_token" value="{{ client.ha_token }}"></label><br>
+    <input type="submit" value="Save">
+</form>
+{% endblock %}
