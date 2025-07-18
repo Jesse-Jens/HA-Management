@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% block content %}
+<h2>{{ client.name }}</h2>
+<p>Status: {{ client.status or 'unknown' }}</p>
+<div class="mb-3">
+  <a class="btn btn-danger" href="{{ url_for('main.client_action', client_id=client.id, cmd='restart') }}">Restart HA</a>
+  <a class="btn btn-secondary" href="{{ url_for('main.client_action', client_id=client.id, cmd='shutdown') }}">Shutdown HA</a>
+  <a class="btn btn-secondary" href="{{ url_for('main.client_wgconfig', client_id=client.id) }}">Download WG Config</a>
+  {% if client.ha_url %}
+  <a class="btn btn-primary" href="{{ client.ha_url }}" target="_blank">Open HA</a>
+  {% endif %}
+</div>
+{% if output %}
+<pre class="bg-dark text-light p-2">{{ output }}</pre>
+{% endif %}
+{% endblock %}
