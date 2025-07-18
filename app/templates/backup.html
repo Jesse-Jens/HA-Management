@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+{% block content %}
+<h2>Backup Database</h2>
+<p>
+  <a class="btn btn-secondary" href="{{ url_for('main.backup', download=1) }}">Download backup</a>
+</p>
+<form method="post" enctype="multipart/form-data" style="max-width:400px;">
+  <div class="mb-3">
+    <input class="form-control" type="file" name="db" required>
+  </div>
+  <button class="btn btn-primary" type="submit">Import</button>
+</form>
+{% endblock %}
